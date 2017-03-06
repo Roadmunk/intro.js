@@ -4,5 +4,19 @@
   "keywords": ["demo", "intro", "introduction"],
   "homepage": "http://introjs.com",
   "author": "Afshin Mehrabani",
-  "main": ["intro.js","introjs.css"]
+  "main": ["intro.js","introjs.css"],
+  "ignore": [
+    ".*",
+    "BUILD",
+    "component.json",
+    "docs",
+    "example",
+    "introjs.css",
+    "introjs-rtl.css",
+    "Makefile",
+    "minified/introjs-rtl.min.css",
+    "minified/intro.min.js",
+    "package.json",
+    "themes"
+  ]
 }
