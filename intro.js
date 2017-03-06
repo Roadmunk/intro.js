@@ -874,7 +874,7 @@
 
         // change active bullet
 				if (self._options.showBullets) {
-					oldReferenceLayer.querySelector('.introjs-bullets li > a.active').className = '';
+					oldReferenceLayer.querySelector('.introjs-bullets li > a.active').className = 'previous';
 					oldReferenceLayer.querySelector(`.introjs-bullets li > a[data-stepnumber="${targetElement.step}"]`).className = 'active';
 				}
 				oldReferenceLayer.querySelector('.introjs-progress .introjs-progressbar').setAttribute('style', `width:${_getProgress.call(self)}%;`);
