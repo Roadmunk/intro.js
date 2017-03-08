@@ -850,6 +850,12 @@
 
 			}
 
+			if (oldHelperNumberLayer) {
+				const currentIntroItem = self._introItems[targetElement.step - 1 >= 0 ? targetElement.step - 1 : 0];
+				oldHelperNumberLayer.className = oldHelperNumberLayer.className.replace(/top-left|top-right|bottom-right|bottom-left/g, '').replace(/^\s+|\s+$/g, '');
+				oldHelperNumberLayer.className += ` ${currentIntroItem.helperNumberPosition || self._options.helperNumberPosition}`;
+			}
+
       // remove old classes if the element still exist
 			const oldShowElement = document.querySelector('.introjs-showElement');
 			if (oldShowElement)
@@ -881,12 +887,8 @@
 
         // show the tooltip
 				oldtooltipContainer.style.opacity = 1;
-				if (oldHelperNumberLayer) {
+				if (oldHelperNumberLayer)
 					oldHelperNumberLayer.style.opacity = 1;
-					const currentIntroItem = self._introItems[targetElement.step - 1 >= 0 ? targetElement.step - 1 : 0];
-					oldHelperNumberLayer.className = oldHelperNumberLayer.className.replace(/top-left|top-right|bottom-right|bottom-left/g, '').replace(/^\s+|\s+$/g, '');
-					oldHelperNumberLayer.className += ` ${currentIntroItem.helperNumberPosition || self._options.helperNumberPosition}`;
-				}
 
 				if (self._options.focusOnTooltipButtons) {
 	        // reset button focus
