@@ -1,9 +1,14 @@
 /**
- * Intro.js v2.4.0
+ * Intro.js v2.4.1
  * https://github.com/usablica/intro.js
  *
  * Copyright (C) 2016 Afshin Mehrabani (@afshinmeh)
  */
+
+// After adding eslint to this project, we got lots of free alignment & styling fixes.
+// However, this file still needs a ton of manual fixes before it becomes fully compliant with our ESlint standards.
+// SHOULDDO: Manually fix all ESlint issues & then remove the line below
+/* eslint-disable */
 
 (function(root, factory) {
 	if (typeof exports === 'object') {
@@ -20,7 +25,7 @@
 	}
 }(this, function(exports) {
 	// Default config/variables
-	const VERSION = '2.4.0';
+	const VERSION = '2.4.1';
 
 	/**
    * IntroJs main class
@@ -64,10 +69,8 @@
 			hideNextButtonOnLastStep : false,
 			/* Show the previous button */
 			showPrevButton           : true,
-
 			/* Hide previous button in the first step? Otherwise, it will be disabled button. */
 			hidePrevButtonOnFirstStep : false,
-
 			/* Show tour bullets? */
 			showBullets             : true,
 			/* Show tour progress? */
