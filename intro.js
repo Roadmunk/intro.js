@@ -32,64 +32,70 @@
 		this._introItems = [];
 
 		this._options = {
-      /* Next button label in tooltip box */
-			nextLabel               : 'Next &rarr;',
-      /* Previous button label in tooltip box */
-			prevLabel               : '&larr; Back',
-      /* Skip button label in tooltip box */
-			skipLabel               : 'Skip',
-      /* Done button label in tooltip box */
-			doneLabel               : 'Done',
-      /* Hide previous button in the first step? Otherwise, it will be disabled button. */
-			hidePrev                : false,
-      /* Hide next button in the last step? Otherwise, it will be disabled button. */
-			hideNext                : false,
-      /* Default tooltip box position */
-			tooltipPosition         : 'bottom',
-      /* Next CSS class for tooltip boxes */
-			tooltipClass            : '',
-      /* CSS class that is added to the helperLayer */
-			highlightClass          : '',
-      /* Close introduction when pressing Escape button? */
-			exitOnEsc               : true,
-      /* Close introduction when clicking on overlay layer? */
-			exitOnOverlayClick      : true,
-      /* Show step numbers in introduction? */
-			showStepNumbers         : true,
-	  /* Show the step number layer but without the number in it */
-	  		showBlankStepNumber     : false,
-      /* Let user use keyboard to navigate the tour? */
-			keyboardNavigation      : true,
-      /* Show tour control buttons? */
-			showButtons             : true,
-      /* Show tour bullets? */
-			showBullets             : true,
-      /* Show tour progress? */
-			showProgress            : false,
-      /* Scroll to highlighted element? */
-			scrollToElement         : true,
-      /* Set the overlay opacity */
-			overlayOpacity          : 0.8,
-      /* Padding to add after scrolling when element is not in the viewport (in pixels) */
-			scrollPadding           : 30,
-      /* Precedence of positions, when auto is enabled */
-			positionPrecedence      : [ 'bottom', 'top', 'right', 'left' ],
-      /* Disable an interaction with element? */
-			disableInteraction      : false,
-      /* Default hint position */
-			hintPosition            : 'top-middle',
-      /* Hint button label */
-			hintButtonLabel         : 'Got it',
-      /* Adding animation to hints? */
-			hintAnimation           : true,
-	  /* Navigate to the next step when the user hits enter */
-	  		navigateOnEnter         : true,
-	  /* Set the focus to tooltip buttons */
-	  		focusOnTooltipButtons   : true,
-	  /* If the user clicks on bullet should the current step change */
-	  	    canNavigateUsingBullets : false,
-  	  /* Default position for the helper number */
-  	  		helperNumberPosition    : 'top-left',
+  			/* Next button label in tooltip box */
+			nextLabel                 : 'Next &rarr;',
+  			/* Previous button label in tooltip box */
+			prevLabel                 : '&larr; Back',
+			/* Skip button label in tooltip box */
+			skipLabel                 : 'Skip',
+			/* Done button label in tooltip box */
+			doneLabel                 : 'Done',
+			/* Default tooltip box position */
+			tooltipPosition           : 'bottom',
+			/* Next CSS class for tooltip boxes */
+			tooltipClass              : '',
+			/* CSS class that is added to the helperLayer */
+			highlightClass            : '',
+			/* Close introduction when pressing Escape button? */
+			exitOnEsc                 : true,
+			/* Close introduction when clicking on overlay layer? */
+			exitOnOverlayClick        : true,
+			/* Show step numbers in introduction? */
+			showStepNumbers           : true,
+			/* Show the step number layer but without the number in it */
+	  		showBlankStepNumber       : false,
+			/* Let user use keyboard to navigate the tour? */
+			keyboardNavigation        : true,
+			/* Show tour control buttons? Enabling this will hide prev, next & skip buttons*/
+			showButtons               : true,
+			/* Show the next button */
+			showNextButton            : true,
+			/* Hide next button in the last step? Otherwise, it will be disabled button. */
+			hideNextButtonOnLastStep  : false,
+			/* Show the previous button */
+			showPrevButton            : true,
+			/* Hide previous button in the first step? Otherwise, it will be disabled button. */
+			hidePrevButtonOnFirstStep : false,
+			/* Show the skip button */
+			showSkipButton            : true,
+			/* Show tour bullets? */
+			showBullets               : true,
+			/* Show tour progress? */
+			showProgress              : false,
+			/* Scroll to highlighted element? */
+			scrollToElement           : true,
+			/* Set the overlay opacity */
+			overlayOpacity            : 0.8,
+			/* Padding to add after scrolling when element is not in the viewport (in pixels) */
+			scrollPadding             : 30,
+			/* Precedence of positions, when auto is enabled */
+			positionPrecedence        : [ 'bottom', 'top', 'right', 'left' ],
+			/* Disable an interaction with element? */
+			disableInteraction        : false,
+			/* Default hint position */
+			hintPosition              : 'top-middle',
+			/* Hint button label */
+			hintButtonLabel           : 'Got it',
+			/* Adding animation to hints? */
+			hintAnimation             : true,
+			/* Navigate to the next step when the user hits enter */
+	  		navigateOnEnter           : true,
+			/* Set the focus to tooltip buttons */
+	  		focusOnTooltipButtons     : true,
+			/* If the user clicks on bullet should the current step change */
+	  	    canNavigateUsingBullets   : false,
+			/* Default position for the helper number */
+  	  		helperNumberPosition      : 'top-left',
 		};
 	}
 
@@ -1059,7 +1065,7 @@
 		if (this._currentStep == 0 && this._introItems.length > 1) {
 			nextTooltipButton.className = 'introjs-button introjs-nextbutton';
 
-			if (this._options.hidePrev == true) {
+			if (this._options.hidePrevButtonOnFirstStep == true) {
 				prevTooltipButton.className = 'introjs-button introjs-prevbutton introjs-hidden';
 				nextTooltipButton.className += ' introjs-fullbutton';
 			}
@@ -1074,7 +1080,7 @@
 			skipTooltipButton.innerHTML = this._options.doneLabel;
 			prevTooltipButton.className = 'introjs-button introjs-prevbutton';
 
-			if (this._options.hideNext == true) {
+			if (this._options.hideNextButtonOnLastStep == true) {
 				nextTooltipButton.className = 'introjs-button introjs-nextbutton introjs-hidden';
 				prevTooltipButton.className += ' introjs-fullbutton';
 			}
