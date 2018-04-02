@@ -38,67 +38,71 @@
 
 		this._options = {
   			/* Next button label in tooltip box */
-			nextLabel                : 'Next &rarr;',
+			nextLabel                 : 'Next &rarr;',
+			/* Next button class in tooltip box */
+			nextButtonClass           : '',
   			/* Previous button label in tooltip box */
-			prevLabel                : '&larr; Back',
+			prevLabel                 : '&larr; Back',
 			/* Skip button label in tooltip box */
-			skipLabel                : 'Skip',
+			skipLabel                 : 'Skip',
 			/* Done button label in tooltip box */
-			doneLabel                : 'Done',
+			doneLabel                 : 'Done',
 			/* Default tooltip box position */
-			tooltipPosition          : 'bottom',
+			tooltipPosition           : 'bottom',
 			/* Next CSS class for tooltip boxes */
-			tooltipClass             : '',
+			tooltipClass              : '',
 			/* CSS class that is added to the helperLayer */
-			highlightClass           : '',
+			highlightClass            : '',
 			/* Close introduction when pressing Escape button? */
-			exitOnEsc                : true,
+			exitOnEsc                 : true,
 			/* Close introduction when clicking on overlay layer? */
-			exitOnOverlayClick       : true,
+			exitOnOverlayClick        : true,
 			/* Show step numbers in introduction? */
-			showStepNumbers          : true,
+			showStepNumbers           : true,
 			/* Show the step number layer but without the number in it */
-	  		showBlankStepNumber      : false,
+	  		showBlankStepNumber       : false,
 			/* Let user use keyboard to navigate the tour? */
-			keyboardNavigation       : true,
+			keyboardNavigation        : true,
 			/* Show tour control buttons? Enabling this will hide prev, next & skip buttons*/
-			showButtons              : true,
+			showButtons               : true,
 			/* Show the next button */
-			showNextButton           : true,
+			showNextButton            : true,
 			/* Hide next button in the last step? Otherwise, it will be disabled button. */
-			hideNextButtonOnLastStep : false,
+			hideNextButtonOnLastStep  : false,
 			/* Show the previous button */
-			showPrevButton           : true,
+			showPrevButton            : true,
 			/* Hide previous button in the first step? Otherwise, it will be disabled button. */
 			hidePrevButtonOnFirstStep : false,
+			/* Show the skip button */
+			showSkipButton            : true,
 			/* Show tour bullets? */
-			showBullets             : true,
+			showBullets               : true,
 			/* Show tour progress? */
-			showProgress            : false,
+			showProgress              : false,
 			/* Scroll to highlighted element? */
-			scrollToElement         : true,
+			scrollToElement           : true,
 			/* Set the overlay opacity */
-			overlayOpacity          : 0.8,
+			overlayOpacity            : 0.8,
 			/* Padding to add after scrolling when element is not in the viewport (in pixels) */
-			scrollPadding           : 30,
+			scrollPadding             : 30,
 			/* Precedence of positions, when auto is enabled */
-			positionPrecedence      : [ 'bottom', 'top', 'right', 'left' ],
+			positionPrecedence        : [ 'bottom', 'top', 'right', 'left' ],
 			/* Disable an interaction with element? */
-			disableInteraction      : false,
+			disableInteraction        : false,
 			/* Default hint position */
-			hintPosition            : 'top-middle',
+			hintPosition              : 'top-middle',
 			/* Hint button label */
-			hintButtonLabel         : 'Got it',
+			hintButtonLabel           : 'Got it',
 			/* Adding animation to hints? */
-			hintAnimation           : true,
+			hintAnimation             : true,
 			/* Navigate to the next step when the user hits enter */
-	  		navigateOnEnter         : true,
+	  		navigateOnEnter           : true,
 			/* Set the focus to tooltip buttons */
-	  		focusOnTooltipButtons   : true,
+	  		focusOnTooltipButtons     : true,
 			/* If the user clicks on bullet should the current step change */
-	  	    canNavigateUsingBullets : false,
+	  	    canNavigateUsingBullets   : false,
 			/* Default position for the helper number */
-  	  		helperNumberPosition    : 'top-left',
+  	  		helperNumberPosition      : 'top-left',
 		};
 	}
 
@@ -1121,6 +1125,18 @@
 
 			tooltipLayer.appendChild(buttonsLayer);
 
+			if (!this._options.showNextButton) {
+				nextTooltipButton.style.display = 'none';
+			}
+
+			if (!this._options.showPrevButton) {
+				prevTooltipButton.style.display = 'none';
+			}
+
+			if (!this._options.showSkipButton) {
+				skipTooltipButton.style.display = 'none';
+			}
+
 			// set proper position
 			_placeTooltip.call(self, targetElement.element, tooltipLayer, arrowLayer, helperNumberLayer);
 		}
@@ -1171,6 +1187,10 @@
 		// Set focus on "next" button, so that hitting Enter always moves you onto the next step
 		if (this._options.focusOnTooltipButtons) {
 			nextTooltipButton.focus();
+		}
+
+		if (this._options.nextButtonClass) {
+			nextTooltipButton.className += ` ${this._options.nextButtonClass}`;
 		}
 
 		// add target element position style
