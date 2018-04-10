@@ -389,12 +389,17 @@
 		}
 
 		const nextStep = this._introItems[this._currentStep];
+		let result;
 		if (typeof this._introBeforeChangeCallback !== 'undefined') {
-			this._introBeforeChangeCallback.call(this, nextStep.element);
+			result = this._introBeforeChangeCallback.call(this, nextStep.element);
 		}
 
 
-		_showElement.call(this, nextStep);
+		if (result instanceof Promise) {
+			result.then(() => _showElement.call(this, nextStep));
+		} else {
+			_showElement.call(this, nextStep);
+		}
 	}
 
 	/**
@@ -870,6 +875,8 @@
 			highlightClass = 'introjs-helperLayer',
 			elementPosition = _getOffset(targetElement.element);
 
+		const currentStepObj = this._introItems[this._currentStep];
+
 		// check for a current step highlight class
 		if (typeof targetElement.highlightClass === 'string') {
 			highlightClass += ` ${targetElement.highlightClass}`;
@@ -961,6 +968,9 @@
 				if (oldHelperNumberLayer) {
 					oldHelperNumberLayer.style.opacity = 1;
 				}
+
+				// Reset the next button label 
+				nextTooltipButton.innerHTML = currentStepObj.nextLabel || self._options.nextLabel;
 
 				if (self._options.focusOnTooltipButtons) {
 	        // reset button focus
@@ -1073,14 +1083,11 @@
 			var nextTooltipButton = document.createElement('a');
 
 			nextTooltipButton.onclick = function() {
-				if (self._introItems.length - 1 != self._currentStep) {
-					_nextStep.call(self);
-				}
-
+				_nextStep.call(self);
 			};
 
 			_setAnchorAsButton(nextTooltipButton);
-			nextTooltipButton.innerHTML = this._options.nextLabel;
+			nextTooltipButton.innerHTML = currentStepObj.nextLabel || this._options.nextLabel;
 
 			// previous button
 			var prevTooltipButton = document.createElement('a');
