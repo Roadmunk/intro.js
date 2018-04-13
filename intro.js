@@ -245,7 +245,7 @@
 				if (e.keyCode === 27 && self._options.exitOnEsc == true) {
 					// escape key pressed, exit the intro
 					// check if exit callback is defined
-					if (self._introExitCallback != undefined) {
+					if (typeof self._introExitCallback === 'function') {
 						self._introExitCallback.call(self);
 					}
 
@@ -273,7 +273,7 @@
 						}
 
 						// check if any callback is defined
-						if (self._introExitCallback != undefined) {
+						if (typeof self._introExitCallback === 'function') {
 							self._introExitCallback.call(self);
 						}
 
@@ -390,7 +390,7 @@
 
 		const nextStep = this._introItems[this._currentStep];
 		let result;
-		if (typeof this._introBeforeChangeCallback !== 'undefined') {
+		if (typeof this._introBeforeChangeCallback === 'function') {
 			result = this._introBeforeChangeCallback.call(this, nextStep.element);
 		}
 
@@ -417,7 +417,7 @@
 
 
 		const nextStep = this._introItems[--this._currentStep];
-		if (typeof this._introBeforeChangeCallback !== 'undefined') {
+		if (typeof this._introBeforeChangeCallback === 'function') {
 			this._introBeforeChangeCallback.call(this, nextStep.element);
 		}
 
