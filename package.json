@@ -1,7 +1,7 @@
 {
   "name": "intro.js",
   "description": "Better introductions for websites and features with a step-by-step guide for your projects",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "author": "Afshin Mehrabani <afshin.meh@gmail.com>",
   "homepage": "http://introjs.com",
   "repository": {
@@ -9,7 +9,9 @@
     "url": "https://github.com/usablica/intro.js"
   },
   "devDependencies": {
-    "node-minify": "*"
+    "node-minify": "*",
+    "@roadmunk/eslint-config-roadmunk": "^2.0.6",
+    "eslint": "^4.11.0"
   },
   "engine": [
     "node >=0.1.90"
